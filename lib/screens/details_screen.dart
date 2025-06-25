@@ -124,10 +124,7 @@ class DetailsScreen extends StatelessWidget {
                         SizedBox(height: kDefaultPadding / 2),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            CartCounter(),
-                            BtnFav(),
-                          ],
+                          children: [CartCounter(), BtnFav()],
                         ),
                         SizedBox(height: kDefaultPadding / 2),
                         BtnBuy(product: product!),
@@ -179,9 +176,12 @@ class DetailsScreen extends StatelessWidget {
                               ),
                             ),
                             Expanded(
-                              child: Image.asset(
-                                product?.image ?? '',
-                                fit: BoxFit.cover,
+                              child: Hero(
+                                tag: "${product?.id}",
+                                child: Image.asset(
+                                  product?.image ?? '',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ],

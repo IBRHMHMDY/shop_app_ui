@@ -26,9 +26,10 @@ class _CartCounterState extends State<CartCounter> {
           padding: EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
           child: Text(
             numItems.toString().padLeft(2, "0"),
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+            style: TextStyle(
               color: kTextColor,
               fontWeight: FontWeight.bold,
+              fontSize: 20,
             ),
           ),
         ),
