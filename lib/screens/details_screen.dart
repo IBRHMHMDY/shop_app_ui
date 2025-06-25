@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shop_app_ui/components/btn_buy.dart';
+import 'package:shop_app_ui/components/btn_fav.dart';
+import 'package:shop_app_ui/components/cart_counter.dart';
+import 'package:shop_app_ui/components/color_dots.dart';
 import 'package:shop_app_ui/constants.dart';
 import 'package:shop_app_ui/models/product.dart';
 
@@ -49,13 +53,85 @@ class DetailsScreen extends StatelessWidget {
                 children: [
                   Container(
                     margin: EdgeInsets.only(top: size.height * 0.3),
-                    height: 500,
+                    padding: EdgeInsets.only(
+                      top: size.height * 0.12,
+                      left: kDefaultPadding,
+                      right: kDefaultPadding,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(24),
                         topRight: Radius.circular(24),
                       ),
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Color',
+                                    style: TextStyle(color: kTextColor),
+                                  ),
+                                  Row(
+                                    children: [
+                                      ColorDots(
+                                        color: Color(0xFF356C95),
+                                        isSelected: true,
+                                      ),
+                                      ColorDots(color: Color(0xFFF8C078)),
+                                      ColorDots(color: Color(0xFFA29B9B)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: "Size\n",
+                                      style: TextStyle(color: kTextColor),
+                                    ),
+                                    TextSpan(
+                                      text: "${product?.size} cm",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineMedium
+                                          ?.copyWith(
+                                            color: kTextColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: kDefaultPadding / 2),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: kDefaultPadding,
+                          ),
+                          child: Text(product?.description ?? ''),
+                        ),
+                        SizedBox(height: kDefaultPadding / 2),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CartCounter(),
+                            BtnFav(),
+                          ],
+                        ),
+                        SizedBox(height: kDefaultPadding / 2),
+                        BtnBuy(product: product!),
+                      ],
                     ),
                   ),
                   Padding(
